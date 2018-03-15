@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputView {
@@ -7,9 +8,11 @@ public class InputView {
         return column;
     }
 
+
     public static int ladderHeight(Scanner scanner) {
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
         int row = scanner.nextInt();
         return row;
     }
 }
+
