@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ladder {
@@ -5,10 +6,10 @@ public class Ladder {
 
         Scanner scan = new Scanner(System.in);
 
-        String names = InputView.names(scan);
-        Names playerNames = new Names(names);
+        ArrayList<String> playerNames = InputView.getNames(scan);
 
-        int column = playerNames.sizeForRealCol();
+        Names forSize = new Names();
+        int column = forSize.sizeForRealCol();
         int row = InputView.ladderHeight(scan);
 
         LadderSetting ladderSet = new LadderSetting(row, column);
@@ -16,7 +17,7 @@ public class Ladder {
         boolean[][] ladder = ladderSet.getLadder();
 
         OutputView printer = new OutputView();
-        printer.printNames(playerNames.getSplitNames());
+        printer.printNames(playerNames);
         printer.printLadder(ladder);
     }
 }

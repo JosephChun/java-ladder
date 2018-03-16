@@ -1,20 +1,19 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputView {
 
     public static int ladderHeight(Scanner scanner) {
-        OutputView printer = new OutputView();
-        printer.printAskHeight();
+        System.out.println("최대 사다리 높이는 몇 개 인가요?");
         int row = scanner.nextInt();
         return row;
     }
 
-    public static String names(Scanner scanner) {
-
-        OutputView printer = new OutputView();
-        printer.printAskPlayer();
-
+    public static ArrayList<String> getNames(Scanner scanner) {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String getNames = scanner.nextLine();
-        return getNames;
+        Names forNames = new Names();
+        ArrayList<String> splitNames = forNames.getSplitNames(getNames);
+        return Names.checkNames(splitNames);
     }
 }
