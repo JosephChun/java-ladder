@@ -5,7 +5,10 @@ public class Ladder {
 
         Scanner scan = new Scanner(System.in);
 
-        int column = InputView.playerNum(scan);
+        String names = InputView.names(scan);
+        Names playerNames = new Names(names);
+
+        int column = playerNames.sizeForRealCol();
         int row = InputView.ladderHeight(scan);
 
         LadderSetting ladderSet = new LadderSetting(row, column);
@@ -13,6 +16,7 @@ public class Ladder {
         boolean[][] ladder = ladderSet.getLadder();
 
         OutputView printer = new OutputView();
+        printer.printNames(playerNames.getSplitNames());
         printer.printLadder(ladder);
     }
 }
