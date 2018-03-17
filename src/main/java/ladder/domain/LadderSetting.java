@@ -1,10 +1,12 @@
+package ladder.domain;
+
 import java.util.Random;
 
 public class LadderSetting {
 
     private boolean[][] ladder;
 
-    LadderSetting(int row, int column) {
+    public LadderSetting(int row, int column) {
         ladder = new boolean[row][column];
         setRowLadder(row, column);
     }
@@ -14,27 +16,27 @@ public class LadderSetting {
         return random.nextBoolean();
     }
 
-    void setRowLadder(int row, int column) {
+    public void setRowLadder(int row, int column) {
         for (int i = 0; i < row; i++) {
             setColumnLadder(i, column);
         }
     }
 
-    void setColumnLadder(int i, int column) {
+    public void setColumnLadder(int i, int column) {
         for (int j = 0; j < column - 2; j++) {
             ladder[i][j] = randomGenerator();
             sameResultStopper(i, j);
         }
     }
 
-    void sameResultStopper(int i, int j) {
+    public void sameResultStopper(int i, int j) {
         if (ladder[i][j] == ladder[i][j + 2]) {
             boolean makeOppValue = ladder[i][j];
             ladder[i][j + 2] = !makeOppValue;
         }
     }
 
-    boolean[][] getLadder() {
+    public boolean[][] getLadder() {
         return ladder;
     }
 }
