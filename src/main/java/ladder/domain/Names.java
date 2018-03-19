@@ -6,15 +6,10 @@ import java.util.Arrays;
 public class Names {
 
     private static ArrayList<String> splitNames;
-    private int realColSize;
 
     public ArrayList<String> getSplitNames(String names) {
         ArrayList<String> splitName = new ArrayList<>(Arrays.asList(names.split(",")));
         return this.splitNames = splitName;
-    }
-
-    public int sizeForRealCol() {
-        return this.realColSize = (this.splitNames.size() * 2 - 1);
     }
 
     public static boolean checkLengthOfNames(ArrayList<String> names) {

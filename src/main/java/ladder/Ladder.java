@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderSetting;
-import ladder.domain.Names;
+import ladder.domain.Line;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -14,18 +14,13 @@ public class Ladder {
         Scanner scan = new Scanner(System.in);
 
         ArrayList<String> playerNames = InputView.getNames(scan);
-
-        Names forSize = new Names();
-        int column = forSize.sizeForRealCol();
         int row = InputView.ladderHeight(scan);
 
-        LadderSetting ladderSet = new LadderSetting(row, column);
+        LadderSetting ladderSet = new LadderSetting(row, playerNames);
+        ArrayList<Line> ladder = ladderSet.makeAllLine();
 
-        boolean[][] ladder = ladderSet.getLadder();
-
-        OutputView printer = new OutputView();
-        printer.printNames(playerNames);
-        printer.printLadder(ladder);
+        OutputView print = new OutputView();
+        print.printNames(playerNames,ladder);
     }
 }
 

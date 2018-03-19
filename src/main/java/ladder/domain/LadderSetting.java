@@ -1,43 +1,24 @@
 package ladder.domain;
 
-import java.util.Random;
+import java.util.ArrayList;
 
 public class LadderSetting {
 
-    private boolean[][] ladder;
+    private int row;
+    ArrayList<String> names;
 
-    public LadderSetting(int row, int column) {
-        ladder = new boolean[row][column];
-        setRowLadder(row, column);
+    public LadderSetting (int row, ArrayList<String> names) {
+        this.row = row;
+        this.names = names;
     }
 
-    boolean randomGenerator() {
-        Random random = new Random();
-        return random.nextBoolean();
-    }
-
-    public void setRowLadder(int row, int column) {
+    public ArrayList<Line> makeAllLine() {
+        ArrayList<Line> lines = new ArrayList<Line>();
         for (int i = 0; i < row; i++) {
-            setColumnLadder(i, column);
+            Line line = new Line(names.size()-1);
+            lines.add(line);
         }
-    }
-
-    public void setColumnLadder(int i, int column) {
-        for (int j = 0; j < column - 2; j++) {
-            ladder[i][j] = randomGenerator();
-            sameResultStopper(i, j);
-        }
-    }
-
-    public void sameResultStopper(int i, int j) {
-        if (ladder[i][j] == ladder[i][j + 2]) {
-            boolean makeOppValue = ladder[i][j];
-            ladder[i][j + 2] = !makeOppValue;
-        }
-    }
-
-    public boolean[][] getLadder() {
-        return ladder;
+        return lines;
     }
 }
 

@@ -1,37 +1,33 @@
 package ladder.view;
 
+import ladder.domain.Line;
+
 import java.util.ArrayList;
 
 public class OutputView {
 
-    public void printNames(ArrayList<String> names) {
+    public void printNames(ArrayList<String> names, ArrayList<Line> ladder) {
         for (String name : names) {
             System.out.printf("%5s ", name);
         }
         System.out.println();
+        printLadder(ladder);
     }
 
-    public void printLadder(boolean[][] ladder) {
-        for (int i = 0; i < ladder.length; i++) {
-            drawLadder(ladder, i);
+    public void printLadder(ArrayList<Line> ladder) {
+        for (Line ladderLine : ladder) {
+            System.out.print("  ");
+            drawLadder(ladderLine);
         }
     }
 
-    public void drawLadder(boolean[][] ladder, int i) {
-        for (int j = 0; j < ladder[i].length; j++) {
-            colLineController(ladder, i, j);
+    public void drawLadder(Line ladder) {
+        ArrayList<Boolean> allLadder = ladder.getLine();
+        for (int j = 0; j < allLadder.size(); j++) {
+            System.out.print("|");
+            System.out.print(isTrue(allLadder.get(j)));
         }
-        System.out.println();
-    }
-
-    public void colLineController(boolean[][] ladder, int i, int j) {
-        if (j % 2 == 0 && j != 1) {
-            System.out.print(" | ");
-        }
-
-        if (j % 2 == 1) {
-            System.out.print(isTrue(ladder[i][j]));
-        }
+        System.out.println("|");
     }
 
     public String isTrue(boolean ladder) {
